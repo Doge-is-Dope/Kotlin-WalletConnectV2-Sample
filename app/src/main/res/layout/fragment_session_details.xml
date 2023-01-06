@@ -61,7 +61,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
             android:text="@string/disconnect"
-            android:textColor="?colorOnSurface"
+            android:textColor="@color/white"
             app:backgroundTint="@color/red" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

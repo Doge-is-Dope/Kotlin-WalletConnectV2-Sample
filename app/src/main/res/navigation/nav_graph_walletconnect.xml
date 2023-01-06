@@ -44,7 +44,7 @@
         android:id="@+id/action_to_sessionProposal"
         app:destination="@id/sessionProposalFragment" />
 
-    <dialog
+    <fragment
         android:id="@+id/sessionDetailFragment"
         android:name="com.example.walletconnectsample.ui.details.SessionDetailsFragment"
         tools:layout="@layout/fragment_session_details">
@@ -52,5 +52,5 @@
         <argument
             android:name="topic"
             app:argType="string" />
-    </dialog>
+    </fragment>
 </navigation>

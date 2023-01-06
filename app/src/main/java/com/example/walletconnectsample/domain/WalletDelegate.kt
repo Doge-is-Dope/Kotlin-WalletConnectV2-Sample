@@ -25,7 +25,6 @@ object WalletDelegate : SignClient.WalletDelegate {
 
     override fun onSessionProposal(sessionProposal: Sign.Model.SessionProposal) {
         WalletDelegate.sessionProposal = sessionProposal
-
         scope.launch {
             _wcEventModels.emit(sessionProposal)
         }
@@ -62,7 +61,7 @@ object WalletDelegate : SignClient.WalletDelegate {
     }
 
     override fun onError(error: Sign.Model.Error) {
-        Timber.e(error.throwable.stackTraceToString())
+        Timber.e("Error: ${error.throwable.stackTraceToString()}")
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)

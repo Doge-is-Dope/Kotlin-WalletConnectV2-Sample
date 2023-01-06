@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -14,12 +15,11 @@ import com.example.walletconnectsample.databinding.FragmentSessionDetailsBinding
 import com.example.walletconnectsample.model.SessionDetails
 import com.example.walletconnectsample.utils.WalletEvents
 import com.example.walletconnectsample.utils.extractHost
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-class SessionDetailsFragment : BottomSheetDialogFragment() {
+class SessionDetailsFragment : Fragment() {
     private var _binding: FragmentSessionDetailsBinding? = null
     private val binding get() = _binding!!
 

@@ -1,14 +1,16 @@
 package com.example.walletconnectsample.ui.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.example.walletconnectsample.databinding.FragmentMainBinding
 import com.example.walletconnectsample.utils.ACCOUNTS_ARGUMENT_KEY
 import kotlinx.coroutines.flow.launchIn
@@ -24,7 +26,6 @@ class MainFragment : Fragment() {
 
     private val activeSessionAdapter by lazy {
         ActiveSessionAdapter(listener = ActiveSessionAdapter.ActiveSessionListener {
-            Timber.d("topic: ${it.topic}")
             findNavController().navigate(MainFragmentDirections.actionToSessionDetail(it.topic))
         })
     }
@@ -41,12 +42,11 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnConnect.setOnClickListener {
-            findNavController().navigate(MainFragmentDirections.actionToScanner())
-        }
-        with(binding.sessionsList) {
-            adapter = activeSessionAdapter
-            setHasFixedSize(true)
+        with(binding) {
+            btnConnect.setOnClickListener { findNavController().navigate(MainFragmentDirections.actionToScanner()) }
+            sessionsList.adapter = activeSessionAdapter
+            sessionsList.addOnScrollListener(getScrollListener())
+            sessionsList.setHasFixedSize(true)
         }
 
         mainViewModel.activeSessionsFlow
@@ -67,5 +67,20 @@ class MainFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun getScrollListener(): OnScrollListener = object : OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            if (dy > 0 || dy < 0 && binding.btnConnect.isExtended) {
+                binding.btnConnect.shrink()
+            }
+        }
+
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                binding.btnConnect.extend()
+            }
+            super.onScrollStateChanged(recyclerView, newState)
+        }
     }
 }

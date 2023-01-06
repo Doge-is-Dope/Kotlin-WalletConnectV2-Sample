@@ -1,11 +1,9 @@
 package com.example.walletconnectsample.ui.details
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.walletconnectsample.domain.WalletDelegate
 import com.example.walletconnectsample.model.SessionDetails
-import com.example.walletconnectsample.utils.Chains
 import com.example.walletconnectsample.utils.WalletEvents
 import com.example.walletconnectsample.utils.mapOfAccounts
 import com.walletconnect.sign.client.Sign
@@ -31,21 +29,19 @@ class SessionDetailsViewModel : ViewModel() {
     private var selectedSessionTopic: String? = null
 
     init {
-        WalletDelegate.wcEventModels
-            .onEach { wcModel: Sign.Model? ->
-                when (wcModel) {
-                    is Sign.Model.SessionUpdateResponse.Result -> {
-                        // TODO: Update UI once state synchronization
-                        WalletEvents.NoAction
-                    }
-                    is Sign.Model.DeletedSession -> {
-                        selectedSessionTopic = null
-                        _sessionDetails.emit(WalletEvents.Disconnect)
-                    }
-                    else -> WalletEvents.NoAction
+        WalletDelegate.wcEventModels.onEach { wcModel: Sign.Model? ->
+            when (wcModel) {
+                is Sign.Model.SessionUpdateResponse.Result -> {
+                    // TODO: Update UI once state synchronization
+                    WalletEvents.NoAction
                 }
+                is Sign.Model.DeletedSession -> {
+                    selectedSessionTopic = null
+                    _sessionDetails.emit(WalletEvents.Disconnect)
+                }
+                else -> WalletEvents.NoAction
             }
-            .launchIn(viewModelScope)
+        }.launchIn(viewModelScope)
     }
 
     fun getSessionDetails(sessionTopic: String) {
@@ -102,7 +98,6 @@ class SessionDetailsViewModel : ViewModel() {
 
     fun deleteSession() {
         selectedSessionTopic?.let {
-            Timber.d("")
             val disconnect = Sign.Params.Disconnect(sessionTopic = it)
 
             SignClient.disconnect(disconnect) { error ->
