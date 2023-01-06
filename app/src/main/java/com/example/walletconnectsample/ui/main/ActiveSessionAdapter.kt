@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.walletconnectsample.databinding.ListItemSessionBinding
 import com.example.walletconnectsample.model.ActiveSession
+import com.example.walletconnectsample.utils.extractHost
 
 class ActiveSessionAdapter(private val listener: ActiveSessionListener) :
     ListAdapter<ActiveSession, ActiveSessionAdapter.ViewHolder>(DiffCallback) {
@@ -29,7 +30,7 @@ class ActiveSessionAdapter(private val listener: ActiveSessionListener) :
             binding.apply {
                 imgPeerIcon.load(session.icon)
                 tvPeerName.text = session.name
-                tvPeerUri.text = Uri.parse(session.url).host
+                tvPeerUri.text = session.url.extractHost()
                 root.setOnClickListener { sessionListener.onClick(session) }
             }
         }

@@ -4,6 +4,7 @@ import com.walletconnect.sign.client.Sign
 import com.walletconnect.sign.client.SignClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -64,6 +65,7 @@ object WalletDelegate : SignClient.WalletDelegate {
         Timber.e(error.throwable.stackTraceToString())
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun clearCache() {
         _wcEventModels.resetReplayCache()
     }

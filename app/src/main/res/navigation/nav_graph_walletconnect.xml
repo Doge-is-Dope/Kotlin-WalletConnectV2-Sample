@@ -14,6 +14,10 @@
         <action
             android:id="@+id/action_to_scanner"
             app:destination="@id/scannerFragment" />
+
+        <action
+            android:id="@+id/action_to_sessionDetail"
+            app:destination="@id/sessionDetailFragment" />
     </fragment>
 
     <dialog
@@ -39,4 +43,14 @@
     <action
         android:id="@+id/action_to_sessionProposal"
         app:destination="@id/sessionProposalFragment" />
+
+    <dialog
+        android:id="@+id/sessionDetailFragment"
+        android:name="com.example.walletconnectsample.ui.details.SessionDetailsFragment"
+        tools:layout="@layout/fragment_session_details">
+
+        <argument
+            android:name="topic"
+            app:argType="string" />
+    </dialog>
 </navigation>

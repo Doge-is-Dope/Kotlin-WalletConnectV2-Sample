@@ -24,7 +24,8 @@ class MainFragment : Fragment() {
 
     private val activeSessionAdapter by lazy {
         ActiveSessionAdapter(listener = ActiveSessionAdapter.ActiveSessionListener {
-            Timber.d("Clicked: $it")
+            Timber.d("topic: ${it.topic}")
+            findNavController().navigate(MainFragmentDirections.actionToSessionDetail(it.topic))
         })
     }
 
@@ -50,7 +51,7 @@ class MainFragment : Fragment() {
 
         mainViewModel.activeSessionsFlow
             .flowWithLifecycle(viewLifecycleOwner.lifecycle)
-            .onEach { listOfLatestSessions -> activeSessionAdapter.submitList(listOfLatestSessions) }
+            .onEach { sessions -> activeSessionAdapter.submitList(sessions) }
             .launchIn(viewLifecycleOwner.lifecycleScope)
 
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(

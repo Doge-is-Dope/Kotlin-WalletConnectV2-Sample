@@ -5,4 +5,5 @@
     <string name="approve">Approve</string>
     <string name="reject">Reject</string>
     <string name="wants_to_connect_to_your_wallet">wants to connect to your wallet</string>
+    <string name="disconnect">Disconnect</string>
 </resources>

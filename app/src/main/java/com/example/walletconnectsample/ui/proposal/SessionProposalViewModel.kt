@@ -21,7 +21,6 @@ class SessionProposalViewModel : ViewModel() {
     }
 
     fun approve() {
-        Timber.d("Approve")
         if (WalletDelegate.sessionProposal != null) {
             val selectedAccounts: Map<Chains, String> = mapOfAccounts
             val sessionProposal = requireNotNull(WalletDelegate.sessionProposal)
@@ -60,7 +59,6 @@ class SessionProposalViewModel : ViewModel() {
     }
 
     fun reject() {
-        Timber.d("Reject")
         WalletDelegate.sessionProposal?.let { sessionProposal ->
             val rejectionReason = "Reject Session"
             val reject = Sign.Params.Reject(

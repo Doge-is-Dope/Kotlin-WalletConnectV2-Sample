@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.walletconnectsample.databinding.FragmentSessionProposalBinding
+import com.example.walletconnectsample.utils.extractHost
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import timber.log.Timber
 
@@ -39,16 +40,14 @@ class SessionProposalFragment : BottomSheetDialogFragment() {
         with(binding) {
 
             viewModel.fetchSessionProposal({ sessionProposal ->
-                Timber.d("App - session: $sessionProposal")
                 imgPeerIcon.load(sessionProposal.peerIcon)
                 tvAppName.text = sessionProposal.peerName
-                tvProposalUri.text = Uri.parse(sessionProposal.proposalUri).host
+                tvProposalUri.text = sessionProposal.proposalUri.extractHost()
 
-
-                Timber.d("Test - session - description: ${sessionProposal.peerDescription}")
-                Timber.d("Test - session - chains: ${sessionProposal.chains}")
-                Timber.d("Test - session - methods: ${sessionProposal.methods}")
-                Timber.d("Test - session - events: ${sessionProposal.events}")
+                Timber.d("session - description: ${sessionProposal.peerDescription}")
+                Timber.d("session - chains: ${sessionProposal.chains}")
+                Timber.d("session - methods: ${sessionProposal.methods}")
+                Timber.d("session - events: ${sessionProposal.events}")
             }, {
                 Toast.makeText(context, "Unable to find proposed Session", Toast.LENGTH_SHORT)
                     .show()

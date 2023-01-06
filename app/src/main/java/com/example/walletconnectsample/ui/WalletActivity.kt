@@ -33,7 +33,6 @@ class WalletActivity : AppCompatActivity() {
         viewModel.events
             .flowWithLifecycle(lifecycle)
             .onEach { event ->
-                Timber.d("Test - event: $event")
                 when (event) {
                     is WalletEvents.SessionProposal -> navController.navigate(
                         NavGraphWalletconnectDirections.actionToSessionProposal()
