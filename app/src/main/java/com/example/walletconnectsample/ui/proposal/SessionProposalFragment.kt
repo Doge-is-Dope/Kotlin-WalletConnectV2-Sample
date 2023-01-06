@@ -39,7 +39,7 @@ class SessionProposalFragment : BottomSheetDialogFragment() {
         with(binding) {
 
             viewModel.fetchSessionProposal({ sessionProposal ->
-                imgPeerIcon.load(sessionProposal.peerIcon)
+                imgAppIcon.load(sessionProposal.peerIcon)
                 tvAppName.text = sessionProposal.peerName
                 tvProposalUri.text = sessionProposal.proposalUri.extractHost()
 
