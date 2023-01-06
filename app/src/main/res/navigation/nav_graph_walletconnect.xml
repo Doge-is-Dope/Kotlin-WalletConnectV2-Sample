@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_walletconnect"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.walletconnectsample.ui.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/action_to_scanner"
+            app:destination="@id/scannerFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/scannerFragment"
+        android:name="com.example.walletconnectsample.ui.scanner.ScannerFragment"
+        android:label="fragment_scanner"
+        tools:layout="@layout/fragment_scanner" />
+
+    <dialog
+        android:id="@+id/sessionRequestFragment"
+        android:name="com.example.walletconnectsample.ui.request.SessionRequestFragment"
+        tools:layout="@layout/fragment_session_request" />
+
+    <action
+        android:id="@+id/action_to_sessionRequest"
+        app:destination="@id/sessionRequestFragment" />
+
+    <dialog
+        android:id="@+id/sessionProposalFragment"
+        android:name="com.example.walletconnectsample.ui.proposal.SessionProposalFragment"
+        tools:layout="@layout/fragment_session_proposal" />
+
+    <action
+        android:id="@+id/action_to_sessionProposal"
+        app:destination="@id/sessionProposalFragment" />
+</navigation>

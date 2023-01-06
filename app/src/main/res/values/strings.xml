@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">WalletConnectSample</string>
+    <string name="walletconnect">Wallet Connect</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reject">Reject</string>
+    <string name="approve">Approve</string>
+    <string name="wants_to_connect_to_your_wallet">wants to connect to your wallet</string>
+</resources>
