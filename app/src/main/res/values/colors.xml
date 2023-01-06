@@ -2,7 +2,6 @@
 <resources>
     <color name="walletconnect">#3396ff</color>
 
-    <color name="textColor">@color/dark</color>
     <color name="approve">@color/walletconnect</color>
     <color name="reject">@color/gray</color>
 
