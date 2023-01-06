@@ -6,9 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.walletconnectsample.databinding.FragmentMainBinding
 import com.example.walletconnectsample.utils.ACCOUNTS_ARGUMENT_KEY
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 
 class MainFragment : Fragment() {
 
@@ -16,6 +21,12 @@ class MainFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val mainViewModel: MainViewModel by viewModels()
+
+    private val activeSessionAdapter by lazy {
+        ActiveSessionAdapter(listener = ActiveSessionAdapter.ActiveSessionListener {
+            Timber.d("Clicked: $it")
+        })
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +43,15 @@ class MainFragment : Fragment() {
         binding.btnConnect.setOnClickListener {
             findNavController().navigate(MainFragmentDirections.actionToScanner())
         }
+        with(binding.sessionsList) {
+            adapter = activeSessionAdapter
+            setHasFixedSize(true)
+        }
+
+        mainViewModel.activeSessionsFlow
+            .flowWithLifecycle(viewLifecycleOwner.lifecycle)
+            .onEach { listOfLatestSessions -> activeSessionAdapter.submitList(listOfLatestSessions) }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
 
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(
             ACCOUNTS_ARGUMENT_KEY

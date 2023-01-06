@@ -2,6 +2,7 @@ package com.example.walletconnectsample.ui.proposal
 
 import androidx.lifecycle.ViewModel
 import com.example.walletconnectsample.domain.WalletDelegate
+import com.example.walletconnectsample.model.SessionProposal
 import com.example.walletconnectsample.utils.Chains
 import com.example.walletconnectsample.utils.mapOfAccounts
 import com.walletconnect.sign.client.Sign
@@ -10,7 +11,7 @@ import timber.log.Timber
 
 class SessionProposalViewModel : ViewModel() {
 
-    fun fetchSessionProposal(sessionExists: (SessionProposalUI) -> Unit, sessionDNE: () -> Unit) {
+    fun fetchSessionProposal(sessionExists: (SessionProposal) -> Unit, sessionDNE: () -> Unit) {
         if (WalletDelegate.sessionProposal != null) {
             val sessionProposalUI = generateSessionProposalEvent(WalletDelegate.sessionProposal!!)
             sessionExists(sessionProposalUI)
@@ -24,7 +25,7 @@ class SessionProposalViewModel : ViewModel() {
         if (WalletDelegate.sessionProposal != null) {
             val selectedAccounts: Map<Chains, String> = mapOfAccounts
             val sessionProposal = requireNotNull(WalletDelegate.sessionProposal)
-            // Get the
+
             val sessionNamespaces: Map<String, Sign.Model.Namespace.Session> =
                 selectedAccounts.filter { (chain: Chains, _) ->
                     chain.chainId in sessionProposal.requiredNamespaces.values.flatMap { it.chains }
@@ -75,8 +76,8 @@ class SessionProposalViewModel : ViewModel() {
         }
     }
 
-    private fun generateSessionProposalEvent(sessionProposal: Sign.Model.SessionProposal): SessionProposalUI {
-        return SessionProposalUI(
+    private fun generateSessionProposalEvent(sessionProposal: Sign.Model.SessionProposal): SessionProposal {
+        return SessionProposal(
             peerIcon = sessionProposal.icons.firstOrNull().toString(),
             peerName = sessionProposal.name,
             proposalUri = sessionProposal.url,

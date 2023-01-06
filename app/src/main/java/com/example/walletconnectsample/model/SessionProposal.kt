@@ -1,6 +1,6 @@
-package com.example.walletconnectsample.ui.proposal
+package com.example.walletconnectsample.model
 
-data class SessionProposalUI(
+data class SessionProposal(
     val peerIcon: String,
     val peerName: String,
     val proposalUri: String,

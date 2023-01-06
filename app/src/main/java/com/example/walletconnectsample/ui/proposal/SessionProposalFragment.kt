@@ -12,7 +12,6 @@ import coil.load
 import com.example.walletconnectsample.databinding.FragmentSessionProposalBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import timber.log.Timber
-import java.net.URI
 
 class SessionProposalFragment : BottomSheetDialogFragment() {
     //    private val viewModel: SessionProposalViewModel by viewModels()
