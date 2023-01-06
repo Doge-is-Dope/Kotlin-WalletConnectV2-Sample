@@ -33,6 +33,9 @@ class WalletActivity : AppCompatActivity() {
         viewModel.events
             .flowWithLifecycle(lifecycle)
             .onEach { event ->
+                // prevent from showing multiple modals
+                navController.popBackStack(R.id.mainFragment, false)
+
                 when (event) {
                     is WalletEvents.SessionProposal -> navController.navigate(
                         NavGraphWalletconnectDirections.actionToSessionProposal()

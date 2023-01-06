@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">WalletConnectSample</string>
     <string name="walletconnect">WalletConnect</string>->
-
-    <string name="approve">Approve</string>
-    <string name="reject">Reject</string>
+    <string name="scan_to_connect">Scan to connect</string>
     <string name="wants_to_connect_to_your_wallet">wants to connect to your wallet</string>
     <string name="disconnect">Disconnect</string>
+    <string name="approve">Approve</string>
+    <string name="reject">Reject</string>
 </resources>
