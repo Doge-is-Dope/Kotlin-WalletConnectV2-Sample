@@ -24,7 +24,6 @@ class MainViewModel : ViewModel() {
         SignClient.getListOfActiveSessions().filter { wcSession ->
             wcSession.metaData != null
         }.map { wcSession ->
-            Timber.d("wcSession: $wcSession")
             ActiveSession(
                 icon = wcSession.metaData?.icons?.firstOrNull(),
                 name = wcSession.metaData?.name ?: "",
@@ -34,8 +33,7 @@ class MainViewModel : ViewModel() {
         }
 
     fun pair(pairingUri: String) {
-        Timber.d("Pairing uri: $pairingUri")
         val pairingParams = Core.Params.Pair(pairingUri)
-        CoreClient.Pairing.pair(pairingParams) { error -> Timber.e("Test - ${error.throwable.stackTraceToString()}") }
+        CoreClient.Pairing.pair(pairingParams) { error -> Timber.e("Error: ${error.throwable.stackTraceToString()}") }
     }
 }

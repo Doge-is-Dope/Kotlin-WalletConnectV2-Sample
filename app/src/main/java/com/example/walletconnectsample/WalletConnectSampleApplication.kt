@@ -37,13 +37,13 @@ class WalletConnectSampleApplication : Application() {
             connectionType = connectionType,
             application = this,
             metaData = appMetadata,
-            onError = { error -> Timber.e("Test - ${error.throwable.stackTraceToString()}") })
+            onError = { error -> Timber.e("Error: ${error.throwable.stackTraceToString()}") })
 
         val init = Sign.Params.Init(core = CoreClient)
 
         // Initialize Sign client
         SignClient.initialize(init) { error ->
-            Timber.e("Test - ${error.throwable.stackTraceToString()}")
+            Timber.e("Error: ${error.throwable.stackTraceToString()}")
         }
     }
 }
