@@ -10,6 +10,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.setupWithNavController
 import coil.load
 import com.example.walletconnectsample.databinding.FragmentSessionDetailsBinding
 import com.example.walletconnectsample.model.SessionDetails
@@ -39,7 +40,7 @@ class SessionDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.toolbar.setupWithNavController(findNavController())
         binding.accountList.adapter = accountAdapter
         binding.btnDisconnect.setOnClickListener {
             viewModel.deleteSession()
