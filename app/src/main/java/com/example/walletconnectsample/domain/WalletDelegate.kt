@@ -24,6 +24,7 @@ object WalletDelegate : SignClient.WalletDelegate {
     }
 
     override fun onSessionProposal(sessionProposal: Sign.Model.SessionProposal) {
+        Timber.d("WalletDelegate - onSessionProposal")
         WalletDelegate.sessionProposal = sessionProposal
         scope.launch {
             _wcEventModels.emit(sessionProposal)
@@ -31,37 +32,40 @@ object WalletDelegate : SignClient.WalletDelegate {
     }
 
     override fun onSessionRequest(sessionRequest: Sign.Model.SessionRequest) {
+        Timber.d("WalletDelegate - onSessionRequest")
         scope.launch {
             _wcEventModels.emit(sessionRequest)
         }
     }
 
     override fun onSessionDelete(deletedSession: Sign.Model.DeletedSession) {
+        Timber.d("WalletDelegate - onSessionDelete")
         scope.launch {
             _wcEventModels.emit(deletedSession)
         }
     }
 
     override fun onSessionSettleResponse(settleSessionResponse: Sign.Model.SettledSessionResponse) {
+        Timber.d("WalletDelegate - onSessionSettleResponse")
         sessionProposal = null
-
         scope.launch {
             _wcEventModels.emit(settleSessionResponse)
         }
     }
 
     override fun onSessionUpdateResponse(sessionUpdateResponse: Sign.Model.SessionUpdateResponse) {
+        Timber.d("WalletDelegate - onSessionUpdateResponse")
         scope.launch {
             _wcEventModels.emit(sessionUpdateResponse)
         }
     }
 
     override fun onConnectionStateChange(state: Sign.Model.ConnectionState) {
-        Timber.d("onConnectionStateChange($state)")
+        Timber.d("WalletDelegate - onConnectionStateChange($state)")
     }
 
     override fun onError(error: Sign.Model.Error) {
-        Timber.e("Error: ${error.throwable.stackTraceToString()}")
+        Timber.e("WalletDelegate - onError: ${error.throwable.stackTraceToString()}")
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
