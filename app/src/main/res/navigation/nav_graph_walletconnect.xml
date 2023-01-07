@@ -29,7 +29,12 @@
     <dialog
         android:id="@+id/sessionRequestFragment"
         android:name="com.example.walletconnectsample.ui.request.SessionRequestFragment"
-        tools:layout="@layout/fragment_session_request" />
+        tools:layout="@layout/fragment_session_request">
+
+        <argument
+            android:name="data"
+            app:argType="com.example.walletconnectsample.model.SessionRequestData" />
+    </dialog>
 
     <action
         android:id="@+id/action_to_sessionRequest"

@@ -1,5 +1,7 @@
 package com.example.walletconnectsample.utils
 
+import com.example.walletconnectsample.model.SessionRequestData
+
 sealed class WalletEvents {
 
     object SessionProposal : WalletEvents()
@@ -10,7 +12,7 @@ sealed class WalletEvents {
 
     object Disconnect : WalletEvents()
 
-    data class SessionRequest(val arrayOfArgs: ArrayList<String?>, val numOfArgs: Int) : WalletEvents()
+    data class SessionRequest(val requestData: SessionRequestData) : WalletEvents()
 
     object SessionRequestResponded : WalletEvents()
 

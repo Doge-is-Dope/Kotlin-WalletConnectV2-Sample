@@ -41,7 +41,7 @@ class WalletActivity : AppCompatActivity() {
                         NavGraphWalletconnectDirections.actionToSessionProposal()
                     )
                     is WalletEvents.SessionRequest -> navController.navigate(
-                        NavGraphWalletconnectDirections.actionToSessionRequest()
+                        NavGraphWalletconnectDirections.actionToSessionRequest(event.requestData)
                     )
                     else -> Unit
                 }
