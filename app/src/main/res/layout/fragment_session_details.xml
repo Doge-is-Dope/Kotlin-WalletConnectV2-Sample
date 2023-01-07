@@ -30,7 +30,7 @@
             android:id="@+id/tv_app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
             android:textColor="?colorOnSurface"
             android:textStyle="bold"
@@ -51,8 +51,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="40dp"
             android:text="@string/accounts"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
