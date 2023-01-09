@@ -41,7 +41,7 @@ class SessionRequestFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val chain = mapOfAccounts.filter { (chain, address) ->
+        val chain = mapOfAccounts.filter { (chain, _) ->
             chain.chainId == args.data.chain
         }.toList().firstOrNull()
 
