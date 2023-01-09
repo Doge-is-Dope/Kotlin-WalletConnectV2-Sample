@@ -12,10 +12,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import coil.load
+import com.example.walletconnectsample.R
 import com.example.walletconnectsample.databinding.FragmentSessionDetailsBinding
 import com.example.walletconnectsample.model.SessionDetails
 import com.example.walletconnectsample.utils.WalletEvents
 import com.example.walletconnectsample.utils.extractHost
+import com.example.walletconnectsample.utils.showToast
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -41,6 +43,15 @@ class SessionDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.setupWithNavController(findNavController())
+        binding.toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_ping -> {
+                    viewModel.ping()
+                    true
+                }
+                else -> false
+            }
+        }
         binding.accountList.adapter = accountAdapter
         binding.btnDisconnect.setOnClickListener {
             viewModel.deleteSession()
@@ -67,10 +78,8 @@ class SessionDetailsFragment : Fragment() {
             .flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach { event ->
                 when (event) {
-//                    is WalletEvents.PingSuccess ->
-//                        Toast.makeText(requireContext(), "Pinged Peer Successfully on Topic: ${event.topic}", Toast.LENGTH_SHORT).show()
-//                    is WalletEvents.PingError -> Toast.makeText(requireContext(), "Pinged Peer Unsuccessfully", Toast.LENGTH_SHORT)
-//                        .show()
+                    is WalletEvents.PingSuccess -> requireContext().showToast("Pinged Peer Successfully on Topic: ${event.topic}")
+                    is WalletEvents.PingError -> requireContext().showToast("Pinged Peer Unsuccessfully")
                     is WalletEvents.Disconnect -> findNavController().popBackStack()
                     else -> Unit
                 }

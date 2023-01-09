@@ -15,7 +15,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="Session details" />
+            app:title="Session details"
+            app:menu="@menu/menu_session_details"/>
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/img_app_icon"

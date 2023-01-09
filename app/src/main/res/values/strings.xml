@@ -7,4 +7,5 @@
     <string name="disconnect">Disconnect</string>
     <string name="approve">Approve</string>
     <string name="reject">Reject</string>
+    <string name="ping">Ping</string>
 </resources>

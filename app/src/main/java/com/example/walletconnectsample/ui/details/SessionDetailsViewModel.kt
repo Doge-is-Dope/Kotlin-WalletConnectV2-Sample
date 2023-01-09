@@ -96,6 +96,33 @@ class SessionDetailsViewModel : ViewModel() {
         return accountList
     }
 
+    fun ping() {
+        selectedSessionTopic?.let {
+            val ping = Sign.Params.Ping(it)
+            SignClient.ping(ping, object : Sign.Listeners.SessionPing {
+
+                override fun onSuccess(pingSuccess: Sign.Model.Ping.Success) {
+                    viewModelScope.launch {
+                        _sessionDetails.emit(
+                            WalletEvents.PingSuccess(
+                                pingSuccess.topic,
+                                System.currentTimeMillis()
+                            )
+                        )
+                    }
+                }
+
+                override fun onError(pingError: Sign.Model.Ping.Error) {
+                    viewModelScope.launch {
+                        _sessionDetails.emit(WalletEvents.PingError(System.currentTimeMillis()))
+                    }
+                }
+            })
+        } ?: viewModelScope.launch {
+            _sessionDetails.emit(WalletEvents.PingError(System.currentTimeMillis()))
+        }
+    }
+
     fun deleteSession() {
         selectedSessionTopic?.let {
             val disconnect = Sign.Params.Disconnect(sessionTopic = it)
