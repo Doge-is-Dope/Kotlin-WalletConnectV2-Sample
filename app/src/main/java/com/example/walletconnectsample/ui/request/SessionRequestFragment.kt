@@ -50,8 +50,8 @@ class SessionRequestFragment : BottomSheetDialogFragment() {
             tvAppName.text = args.data.appName
             tvAppUri.text = args.data.appUri?.extractHost()
 
-            tvMisc.text = "Chain: ${chain?.first?.chainName}\n" +
-                    "Method: ${args.data.method}\n" +
+            tvMisc.text = "Chain: ${chain?.first?.chainName}\n\n" +
+                    "Method: ${args.data.method}\n\n" +
                     "Params: ${args.data.params}"
 
             btnReject.setOnClickListener {
