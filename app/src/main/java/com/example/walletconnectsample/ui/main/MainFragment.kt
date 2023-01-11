@@ -1,5 +1,6 @@
 package com.example.walletconnectsample.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,6 +42,13 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Handle uri from deeplink
+        requireActivity().intent?.takeIf { intent -> intent.action == Intent.ACTION_VIEW && !intent.dataString.isNullOrBlank() }
+            ?.let { intent ->
+                mainViewModel.pair(intent.dataString.toString())
+                intent.data = null
+            }
 
         with(binding) {
             btnConnect.setOnClickListener { findNavController().navigate(MainFragmentDirections.actionToScanner()) }

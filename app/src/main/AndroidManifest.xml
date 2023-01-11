@@ -18,7 +18,11 @@
         tools:targetApi="31">
         <activity
             android:name=".ui.WalletActivity"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleTask">
+
+            <nav-graph android:value="@navigation/nav_graph_walletconnect" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

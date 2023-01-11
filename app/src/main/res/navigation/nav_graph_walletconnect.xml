@@ -18,6 +18,10 @@
         <action
             android:id="@+id/action_to_sessionDetail"
             app:destination="@id/sessionDetailFragment" />
+
+        <deepLink
+            app:action="android.intent.action.VIEW"
+            app:uri="wc:/{topic}@2" />
     </fragment>
 
     <dialog

@@ -28,7 +28,7 @@ class WalletConnectSampleApplication : Application() {
             description = "Wallet description",
             url = "example.wallet",
             icons = listOf(walletIconUrl),
-            redirect = "kotlin-wallet-wc:/request" // optional
+            redirect = "android-wallet-wc:/request" // optional
         )
 
         // Initialize Core client
