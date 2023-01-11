@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_walletconnect"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.signsample.ui.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/action_to_scanner"
+            app:destination="@id/scannerFragment" />
+
+        <action
+            android:id="@+id/action_to_sessionDetail"
+            app:destination="@id/sessionDetailFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/scannerFragment"
+        android:name="com.example.signsample.ui.scanner.ScannerFragment"
+        android:label="fragment_scanner"
+        tools:layout="@layout/fragment_scanner" />
+
+    <dialog
+        android:id="@+id/sessionRequestFragment"
+        android:name="com.example.signsample.ui.request.SessionRequestFragment"
+        tools:layout="@layout/fragment_session_request">
+
+        <argument
+            android:name="data"
+            app:argType="com.example.signsample.model.SessionRequestData" />
+    </dialog>
+
+    <action
+        android:id="@+id/action_to_sessionRequest"
+        app:destination="@id/sessionRequestFragment" />
+
+    <dialog
+        android:id="@+id/sessionProposalFragment"
+        android:name="com.example.signsample.ui.proposal.SessionProposalFragment"
+        tools:layout="@layout/fragment_session_proposal" />
+
+    <action
+        android:id="@+id/action_to_sessionProposal"
+        app:destination="@id/sessionProposalFragment" />
+
+    <fragment
+        android:id="@+id/sessionDetailFragment"
+        android:name="com.example.signsample.ui.details.SessionDetailsFragment"
+        tools:layout="@layout/fragment_session_details">
+
+        <argument
+            android:name="topic"
+            app:argType="string" />
+    </fragment>
+</navigation>

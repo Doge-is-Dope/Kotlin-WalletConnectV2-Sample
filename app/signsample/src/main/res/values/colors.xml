@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="walletconnect">#3B99FC</color>
+
+    <color name="approve">@color/walletconnect</color>
+    <color name="reject">@color/gray</color>
+
+    <color name="blue">#68B6F9</color>
+    <color name="red">#FF5555</color>
+    <color name="green">#9DFEB3</color>
+
+    <color name="gray">#BFC2C6</color>
+    <color name="dark">#232528</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+</resources>
