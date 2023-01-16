@@ -1,10 +1,10 @@
 package com.example.signsample.ui.proposal
 
 import androidx.lifecycle.ViewModel
+import com.example.common.Chains
+import com.example.common.mapOfAccounts
 import com.example.signsample.domain.WalletDelegate
 import com.example.signsample.model.SessionProposal
-import com.example.signsample.utils.Chains
-import com.example.signsample.utils.mapOfAccounts
 import com.walletconnect.sign.client.Sign
 import com.walletconnect.sign.client.SignClient
 import timber.log.Timber

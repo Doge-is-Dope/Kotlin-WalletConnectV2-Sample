@@ -11,8 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
+import com.example.common.ACCOUNTS_ARGUMENT_KEY
 import com.example.signsample.databinding.FragmentMainBinding
-import com.example.signsample.utils.ACCOUNTS_ARGUMENT_KEY
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 

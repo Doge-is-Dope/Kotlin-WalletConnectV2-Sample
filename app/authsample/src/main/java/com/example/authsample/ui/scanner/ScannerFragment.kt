@@ -1,4 +1,4 @@
-package com.example.signsample.ui.scanner
+package com.example.authsample.ui.scanner
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -17,8 +17,8 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import com.example.authsample.databinding.FragmentScannerBinding
 import com.example.common.ACCOUNTS_ARGUMENT_KEY
-import com.example.signsample.databinding.FragmentScannerBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.mlkit.vision.barcode.BarcodeScanner
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions

@@ -1,4 +1,4 @@
-package com.example.signsample.utils
+package com.example.common
 
 // chain ID : account address
 val mapOfAccounts: Map<Chains, String> = mapOf(

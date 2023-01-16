@@ -1,7 +1,6 @@
-package com.example.signsample.utils
+package com.example.common
 
 import androidx.annotation.DrawableRes
-import com.example.signsample.R
 
 enum class Chains(
     val chainName: String,

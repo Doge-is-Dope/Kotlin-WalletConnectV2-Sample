@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.common.extractHost
 import com.example.signsample.databinding.ListItemSessionBinding
 import com.example.signsample.model.ActiveSession
-import com.example.signsample.utils.extractHost
 
 class ActiveSessionAdapter(private val listener: ActiveSessionListener) :
     ListAdapter<ActiveSession, ActiveSessionAdapter.ViewHolder>(DiffCallback) {

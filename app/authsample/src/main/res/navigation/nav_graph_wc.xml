@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_walletconnect.xml"
+    app:startDestination="@id/sessionListFragment">
+
+    <fragment
+        android:id="@+id/sessionListFragment"
+        android:name="com.example.authsample.ui.session.SessionListFragment"
+        tools:layout="@layout/fragment_session_list">
+        <action
+            android:id="@+id/action_to_scannerFragment"
+            app:destination="@id/scannerFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/scannerFragment"
+        android:name="com.example.authsample.ui.scanner.ScannerFragment"
+        android:label="fragment_scanner"
+        tools:layout="@layout/fragment_scanner" />
+</navigation>

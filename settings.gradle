@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "WalletConnectSample"
 include ':app:authsample'
 include ':app:signsample'
+include ':app:common'

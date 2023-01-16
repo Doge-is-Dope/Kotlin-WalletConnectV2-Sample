@@ -8,8 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
+import com.example.common.extractHost
 import com.example.signsample.databinding.FragmentSessionProposalBinding
-import com.example.signsample.utils.extractHost
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import timber.log.Timber
 

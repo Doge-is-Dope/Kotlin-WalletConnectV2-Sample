@@ -11,10 +11,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
+import com.example.common.extractHost
+import com.example.common.mapOfAccounts
 import com.example.signsample.databinding.FragmentSessionRequestBinding
 import com.example.signsample.utils.WalletEvents
-import com.example.signsample.utils.extractHost
-import com.example.signsample.utils.mapOfAccounts
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.filterIsInstance

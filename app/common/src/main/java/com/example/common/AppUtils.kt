@@ -1,4 +1,4 @@
-package com.example.signsample.utils
+package com.example.common
 
 import android.content.Context
 import android.net.Uri

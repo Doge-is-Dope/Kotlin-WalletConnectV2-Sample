@@ -12,12 +12,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import coil.load
+import com.example.common.extractHost
+import com.example.common.showToast
 import com.example.signsample.R
 import com.example.signsample.databinding.FragmentSessionDetailsBinding
 import com.example.signsample.model.SessionDetails
 import com.example.signsample.utils.WalletEvents
-import com.example.signsample.utils.extractHost
-import com.example.signsample.utils.showToast
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

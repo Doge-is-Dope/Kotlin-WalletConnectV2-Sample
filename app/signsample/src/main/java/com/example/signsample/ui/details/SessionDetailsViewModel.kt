@@ -2,10 +2,10 @@ package com.example.signsample.ui.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.common.mapOfAccounts
 import com.example.signsample.domain.WalletDelegate
 import com.example.signsample.model.SessionDetails
 import com.example.signsample.utils.WalletEvents
-import com.example.signsample.utils.mapOfAccounts
 import com.walletconnect.sign.client.Sign
 import com.walletconnect.sign.client.SignClient
 import kotlinx.coroutines.flow.MutableSharedFlow
