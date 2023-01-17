@@ -3,36 +3,50 @@ package com.example.authsample.ui.session
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.authsample.delegate.AuthDelegate
+import com.example.authsample.ui.AuthEvent
+import com.example.authsample.utils.ISSUER
 import com.walletconnect.android.Core
 import com.walletconnect.android.CoreClient
+import com.walletconnect.auth.client.Auth
 import com.walletconnect.auth.client.AuthClient
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import timber.log.Timber
 
 class SessionListViewModel : ViewModel() {
-//    val activeSessionsFlow = AuthDelegate.wcEvents
-//        .filterNotNull()
-//        .map { getLatestActiveSessions() }
-//        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), getLatestActiveSessions())
-//
-//    private fun getLatestActiveSessions(): List<ActiveSession> =
-//        CoreClient.Pairing.getPairings().filter { wcSession ->
-//            wcSession.isActive
-//        }.map { wcSession ->
-//            ActiveSession(
-//                icon = wcSession.metaData?.icons?.firstOrNull(),
-//                name = wcSession.metaData?.name ?: "",
-//                url = wcSession.metaData?.url ?: "",
-//                topic = wcSession.topic
-//            )
-//        }
+
+    private val _navigation = Channel<AuthEvent>(Channel.BUFFERED)
+    val navigation: Flow<AuthEvent> = _navigation.receiveAsFlow()
+
+    init {
+        AuthDelegate.wcEvents.map { event: Auth.Event ->
+            when (event) {
+                is Auth.Event.AuthRequest -> {
+                    val formatMessage = Auth.Params.FormatMessage(event.payloadParams, ISSUER)
+                    val formattedMessage = AuthClient.formatMessage(formatMessage) ?: ""
+                    AuthEvent.Request(event.id, formattedMessage)
+                }
+                is Auth.Event.AuthResponse -> {
+                    Timber.d("Test - Response ID: ${event.response.id}")
+                    AuthEvent.NoAction
+                }
+                is Auth.Event.Error -> {
+                    Timber.e("Test - Error: ${event.error.throwable}")
+                    AuthEvent.NoAction
+                }
+                else -> AuthEvent.NoAction
+            }
+        }.onEach { event ->
+            _navigation.trySend(event)
+        }.launchIn(viewModelScope)
+    }
 
     fun pair(pairingUri: String) {
+        Timber.d("Test - pairingUri: $pairingUri")
         val pairingParams = Core.Params.Pair(pairingUri)
         CoreClient.Pairing.pair(pairingParams) { error -> Timber.e("Error: ${error.throwable.stackTraceToString()}") }
     }

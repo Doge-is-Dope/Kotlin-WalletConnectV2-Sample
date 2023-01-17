@@ -33,6 +33,7 @@ class MainViewModel : ViewModel() {
         }
 
     fun pair(pairingUri: String) {
+        Timber.d("Test - pairingUri: $pairingUri")
         val pairingParams = Core.Params.Pair(pairingUri)
         CoreClient.Pairing.pair(pairingParams) { error -> Timber.e("Error: ${error.throwable.stackTraceToString()}") }
     }

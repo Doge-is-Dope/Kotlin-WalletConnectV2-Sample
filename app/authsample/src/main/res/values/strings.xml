@@ -1,4 +1,3 @@
 <resources>
     <string name="app_name">Auth Sample</string>
-    <string name="scan_to_connect">Scan to connect</string>
 </resources>

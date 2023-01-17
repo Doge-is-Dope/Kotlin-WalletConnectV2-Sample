@@ -10,8 +10,11 @@
         android:name="com.example.authsample.ui.session.SessionListFragment"
         tools:layout="@layout/fragment_session_list">
         <action
-            android:id="@+id/action_to_scannerFragment"
+            android:id="@+id/action_to_scanner"
             app:destination="@id/scannerFragment" />
+        <action
+            android:id="@+id/action_to_request"
+            app:destination="@id/requestFragment" />
     </fragment>
 
     <dialog
@@ -19,4 +22,14 @@
         android:name="com.example.authsample.ui.scanner.ScannerFragment"
         android:label="fragment_scanner"
         tools:layout="@layout/fragment_scanner" />
+
+    <dialog
+        android:id="@+id/requestFragment"
+        android:name="com.example.authsample.ui.request.RequestFragment"
+        tools:layout="@layout/fragment_request">
+
+        <argument
+            android:name="requestData"
+            app:argType="com.example.authsample.ui.AuthEvent$Request" />
+    </dialog>
 </navigation>
