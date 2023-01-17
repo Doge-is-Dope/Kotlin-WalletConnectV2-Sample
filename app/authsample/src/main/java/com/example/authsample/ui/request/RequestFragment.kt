@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.authsample.databinding.FragmentRequestBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -31,12 +32,12 @@ class RequestFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             btnApprove.setOnClickListener {
-                viewModel.approve(args.requestData)
-                dismiss()
+                viewModel.approve(args.requestId, args.message)
+                findNavController().popBackStack()
             }
             btnReject.setOnClickListener {
-                viewModel.reject(args.requestData)
-                dismiss()
+                viewModel.reject(args.requestId)
+                findNavController().popBackStack()
             }
         }
     }
@@ -48,6 +49,6 @@ class RequestFragment : BottomSheetDialogFragment() {
 
     override fun onCancel(dialog: DialogInterface) {
         super.onCancel(dialog)
-//        viewModel.reject(args.data.topic, args.data.requestId)
+        viewModel.reject(args.requestId)
     }
 }

@@ -29,7 +29,11 @@
         tools:layout="@layout/fragment_request">
 
         <argument
-            android:name="requestData"
-            app:argType="com.example.authsample.ui.AuthEvent$Request" />
+            android:name="requestId"
+            app:argType="long" />
+
+        <argument
+            android:name="message"
+            app:argType="string" />
     </dialog>
 </navigation>

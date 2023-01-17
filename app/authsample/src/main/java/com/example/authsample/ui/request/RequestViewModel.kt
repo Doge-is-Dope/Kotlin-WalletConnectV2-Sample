@@ -34,18 +34,18 @@ class RequestViewModel : ViewModel() {
 //        }
     }
 
-    fun approve(request: AuthEvent.Request) {
-        val signature = CacaoSigner.sign(request.message, PRIVATE_KEY, SignatureType.EIP191)
+    fun approve(requestId: Long, message: String) {
+        val signature = CacaoSigner.sign(message, PRIVATE_KEY, SignatureType.EIP191)
 
-        AuthClient.respond(Auth.Params.Respond.Result(request.id, signature, ISSUER)) { error ->
+        AuthClient.respond(Auth.Params.Respond.Result(requestId, signature, ISSUER)) { error ->
             Timber.e("Request approve error: ${error.throwable.stackTraceToString()}")
         }
     }
 
-    fun reject(request: AuthEvent.Request) {
+    fun reject(requestId: Long) {
         //todo: Define Error Codes
         AuthClient.respond(
-            Auth.Params.Respond.Error(request.id, 12001, "User Rejected Request")
+            Auth.Params.Respond.Error(requestId, 12001, "User Rejected Request")
         ) { error ->
             Timber.e("Request reject error: ${error.throwable.stackTraceToString()}")
         }

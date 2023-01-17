@@ -46,7 +46,15 @@ class SessionListViewModel : ViewModel() {
     }
 
     fun pair(pairingUri: String) {
-        Timber.d("Test - pairingUri: $pairingUri")
+//        Timber.d("Test - pairingUri: $pairingUri")
+//        val pairings = CoreClient.Pairing.getPairings()
+//        Timber.d("Test - pairings: $pairings")
+//
+//        pairings.firstOrNull { it.isActive && it.uri == pairingUri }?.let { pairing ->
+//            CoreClient.Pairing.disconnect(Core.Params.Disconnect(pairing.topic)) { error ->
+//                Timber.e("Test - Disconnect Error: ${error.throwable}")
+//            }
+//        }
         val pairingParams = Core.Params.Pair(pairingUri)
         CoreClient.Pairing.pair(pairingParams) { error -> Timber.e("Error: ${error.throwable.stackTraceToString()}") }
     }

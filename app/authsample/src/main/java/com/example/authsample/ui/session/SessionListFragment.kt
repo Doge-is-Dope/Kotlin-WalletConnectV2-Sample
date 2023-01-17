@@ -45,7 +45,7 @@ class SessionListFragment : Fragment() {
             viewLifecycleOwner.lifecycle, Lifecycle.State.RESUMED
         ).onEach { event ->
             when (event) {
-                is AuthEvent.Request -> findNavController().navigate(SessionListFragmentDirections.actionToRequest(event))
+                is AuthEvent.Request -> findNavController().navigate(SessionListFragmentDirections.actionToRequest(event.id, event.message))
                 else -> Unit
             }
         }
