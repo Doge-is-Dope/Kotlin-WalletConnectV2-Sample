@@ -46,22 +46,14 @@ dependencies {
     implementation project(":app:common")
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.0'
-    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'com.google.android.material:material:1.8.0'
 
     // WalletConnect
-    def wallet_connect_version = "1.1.1"
+    def wallet_connect_version = "1.4.1"
     implementation(platform("com.walletconnect:android-bom:$wallet_connect_version"))
-    // bug: https://github.com/WalletConnect/WalletConnectKotlinV2/issues/495
-    implementation("com.walletconnect:android-core") {
-        exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel'
-        exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel-ktx'
-    }
-    // bug: https://github.com/WalletConnect/WalletConnectKotlinV2/issues/495
-    implementation("com.walletconnect:sign") {
-        exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel'
-        exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel-ktx'
-    }
-    implementation("com.walletconnect:web3wallet:1.0.0") // android-bom 1.2.0 will include wallet
+    implementation("com.walletconnect:android-core")
+    implementation("com.walletconnect:sign")
+    implementation("com.walletconnect:web3wallet")
 
     // Lifecycle
     def lifecycle_version = "2.5.1"
